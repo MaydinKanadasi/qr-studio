@@ -9,9 +9,11 @@ Format: `## [Sürüm] - YYYY-MM-DD`
 ## [Unreleased]
 
 ### Added
+
 - Proje dokümantasyon yapısı oluşturuldu (`docs/` klasörü: PROJECT_REQUIREMENTS, ARCHITECTURE, DATABASE, API, ROADMAP, UI_GUIDELINES, PROMPTS, CONTRIBUTING, CHANGELOG)
 
 ### Planned
+
 - Faz 0: Proje kurulumu (bkz. `ROADMAP.md`)
 
 ---
@@ -19,6 +21,7 @@ Format: `## [Sürüm] - YYYY-MM-DD`
 ## [0.1.0] - TBD
 
 ### Added
+
 - _(Faz 0 tamamlandığında doldurulacak: Next.js kurulumu, Supabase entegrasyonu, temel klasör yapısı vb.)_
 
 ---

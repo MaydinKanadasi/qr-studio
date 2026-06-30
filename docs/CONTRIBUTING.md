@@ -13,13 +13,13 @@ Bu doküman, projeye katkı sağlarken (veya tek geliştirici olarak çalışır
 
 ## 2. Dosya ve Klasör Adlandırma
 
-| Tür | Adlandırma | Örnek |
-|---|---|---|
-| Component dosyası | PascalCase | `QrPreview.tsx` |
-| Hook dosyası | camelCase, `use` ön eki | `useQrCode.ts` |
-| Klasör | kebab-case | `qr-editor/` |
-| Tip dosyası | camelCase | `qrTypes.ts` |
-| Zod şema dosyası | camelCase, `Schema` son eki | `wifiSchema.ts` |
+| Tür               | Adlandırma                  | Örnek           |
+| ----------------- | --------------------------- | --------------- |
+| Component dosyası | PascalCase                  | `QrPreview.tsx` |
+| Hook dosyası      | camelCase, `use` ön eki     | `useQrCode.ts`  |
+| Klasör            | kebab-case                  | `qr-editor/`    |
+| Tip dosyası       | camelCase                   | `qrTypes.ts`    |
+| Zod şema dosyası  | camelCase, `Schema` son eki | `wifiSchema.ts` |
 
 ## 3. Component Yazım Kuralları
 
@@ -70,6 +70,7 @@ export function QrPreview({ data, size = 300 }: QrPreviewProps) {
 **Tipler:** `feat`, `fix`, `refactor`, `docs`, `style`, `test`, `chore`
 
 **Örnekler:**
+
 ```
 feat(qr-editor): WiFi QR tipi için form eklendi
 fix(auth): login redirect hatası düzeltildi

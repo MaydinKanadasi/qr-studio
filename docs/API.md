@@ -12,13 +12,13 @@ QR Studio'da çoğu işlem (CRUD) doğrudan Supabase JS client'ı üzerinden cli
 
 Next.js'te API route yazmak yerine, aşağıdaki işlemler doğrudan `lib/supabase` client'ı ile yapılır:
 
-| İşlem | Yöntem |
-|---|---|
-| QR kod oluşturma | `supabase.from('qr_codes').insert(...)` |
-| QR kod listeleme | `supabase.from('qr_codes').select(...)` |
-| QR kod güncelleme | `supabase.from('qr_codes').update(...).eq('id', id)` |
-| QR kod silme | `supabase.from('qr_codes').delete().eq('id', id)` |
-| Logo yükleme | `supabase.storage.from('logos').upload(...)` |
+| İşlem                 | Yöntem                                                  |
+| --------------------- | ------------------------------------------------------- |
+| QR kod oluşturma      | `supabase.from('qr_codes').insert(...)`                 |
+| QR kod listeleme      | `supabase.from('qr_codes').select(...)`                 |
+| QR kod güncelleme     | `supabase.from('qr_codes').update(...).eq('id', id)`    |
+| QR kod silme          | `supabase.from('qr_codes').delete().eq('id', id)`       |
+| Logo yükleme          | `supabase.storage.from('logos').upload(...)`            |
 | Auth (login/register) | `supabase.auth.signInWithPassword(...)` / `signUp(...)` |
 
 ## 3. İç API Route'ları (`app/api/`)
@@ -28,6 +28,7 @@ Next.js'te API route yazmak yerine, aşağıdaki işlemler doğrudan `lib/supaba
 AI destekli QR görsel üretimi için Replicate API'ye proxy görevi görür.
 
 **Request body:**
+
 ```json
 {
   "prompt": "cyberpunk şehir manzarası, neon ışıklar",
@@ -37,6 +38,7 @@ AI destekli QR görsel üretimi için Replicate API'ye proxy görevi görür.
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -45,6 +47,7 @@ AI destekli QR görsel üretimi için Replicate API'ye proxy görevi görür.
 ```
 
 **Hata durumu:**
+
 ```json
 {
   "success": false,
@@ -57,6 +60,7 @@ AI destekli QR görsel üretimi için Replicate API'ye proxy görevi görür.
 QR kodun PDF formatında export edilmesi için server-side render gerektiren işlem.
 
 **Request body:**
+
 ```json
 {
   "qrId": "uuid",
@@ -70,18 +74,18 @@ QR kodun PDF formatında export edilmesi için server-side render gerektiren iş
 
 Her QR tipi için `content` alanının (bkz. `DATABASE.md`) beklenen yapısı:
 
-| Tip | content yapısı (örnek) |
-|---|---|
-| url | `{ "url": "https://example.com" }` |
-| text | `{ "text": "Merhaba dünya" }` |
-| email | `{ "email": "a@b.com", "subject": "...", "body": "..." }` |
-| phone | `{ "phone": "+905551112233" }` |
-| sms | `{ "phone": "+905551112233", "message": "..." }` |
-| wifi | `{ "ssid": "MyWifi", "password": "...", "encryption": "WPA" }` |
-| whatsapp | `{ "phone": "+905551112233", "message": "..." }` |
-| vcard | `{ "firstName": "...", "lastName": "...", "phone": "...", "email": "...", "company": "..." }` |
-| event | `{ "title": "...", "start": "ISO date", "end": "ISO date", "location": "..." }` |
-| social | `{ "platform": "instagram", "url": "https://..." }` |
+| Tip      | content yapısı (örnek)                                                                        |
+| -------- | --------------------------------------------------------------------------------------------- |
+| url      | `{ "url": "https://example.com" }`                                                            |
+| text     | `{ "text": "Merhaba dünya" }`                                                                 |
+| email    | `{ "email": "a@b.com", "subject": "...", "body": "..." }`                                     |
+| phone    | `{ "phone": "+905551112233" }`                                                                |
+| sms      | `{ "phone": "+905551112233", "message": "..." }`                                              |
+| wifi     | `{ "ssid": "MyWifi", "password": "...", "encryption": "WPA" }`                                |
+| whatsapp | `{ "phone": "+905551112233", "message": "..." }`                                              |
+| vcard    | `{ "firstName": "...", "lastName": "...", "phone": "...", "email": "...", "company": "..." }` |
+| event    | `{ "title": "...", "start": "ISO date", "end": "ISO date", "location": "..." }`               |
+| social   | `{ "platform": "instagram", "url": "https://..." }`                                           |
 
 ## 5. Hata Yönetimi Standardı
 
