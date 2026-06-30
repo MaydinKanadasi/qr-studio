@@ -4,12 +4,12 @@ Bu doküman, projenin git/github üzerinden adım adım nasıl ilerleyeceğini t
 
 ## Faz 0 — Kurulum
 
-- [ ] Next.js (App Router) + TypeScript projesinin oluşturulması
-- [ ] Tailwind CSS ve shadcn/ui kurulumu
-- [ ] ESLint + Prettier konfigürasyonu
-- [ ] Klasör yapısının oluşturulması (bkz. `ARCHITECTURE.md`)
-- [ ] Supabase projesinin oluşturulması ve ortam değişkenlerinin (.env) ayarlanması
-- [ ] GitHub reposunun oluşturulması, ana branch koruması (main) ve branch stratejisi belirlenmesi
+- [x] Next.js (App Router) + TypeScript projesinin oluşturulması
+- [x] Tailwind CSS ve shadcn/ui kurulumu
+- [x] ESLint + Prettier konfigürasyonu
+- [x] Klasör yapısının oluşturulması (bkz. `ARCHITECTURE.md`)
+- [x] Supabase projesinin oluşturulması ve ortam değişkenlerinin (.env) ayarlanması
+- [x] GitHub reposunun oluşturulması, ana branch koruması (main) ve branch stratejisi belirlenmesi
 
 ## Faz 1 — Authentication
 
