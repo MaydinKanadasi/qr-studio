@@ -23,6 +23,7 @@ Uzun vadeli vizyon, platformu okunabilirliğini koruyan sanatsal QR kodlar üret
 ## 3. Teknoloji Yığını (Tech Stack)
 
 ### Frontend
+
 - Next.js (App Router)
 - TypeScript
 - Tailwind CSS
@@ -32,11 +33,13 @@ Uzun vadeli vizyon, platformu okunabilirliğini koruyan sanatsal QR kodlar üret
 - Lucide Icons
 
 ### QR Üretimi
+
 - qr-code-styling kütüphanesi
 
 Desteklenen özellikler: canlı önizleme, logo gömme, gradient, yuvarlatılmış köşeler, özel nokta stilleri, SVG/PNG export.
 
 ### Backend — Supabase
+
 - Authentication
 - PostgreSQL
 - Row Level Security (RLS)
@@ -45,26 +48,29 @@ Desteklenen özellikler: canlı önizleme, logo gömme, gradient, yuvarlatılmı
 - Edge Functions (ileride)
 
 ### Deployment
+
 - Vercel
 
 ## 4. Kullanıcı Rolleri
 
 ### Guest (Misafir)
+
 **Yapabilir:** Landing page'i ziyaret etme, demo deneme, kayıt olma, giriş yapma
 **Yapamaz:** QR kod kaydetme
 
 ### User (Üye)
+
 **Yapabilir:** QR kod oluşturma, kaydetme, düzenleme, silme, PNG/SVG indirme, logo yükleme, profil yönetimi
 
 ## 5. Sayfalar ve Kapsam
 
-| Sayfa | İçerik |
-|---|---|
-| Landing Page | Hero, Features, Examples, Pricing, FAQ, Footer |
-| Login | Email, Password, Forgot Password |
-| Register | Email, Password, Confirm Password |
-| Dashboard | Sidebar: Dashboard, Create QR, My QR Codes, Settings |
-| Create QR | URL, Text, Email, Phone, SMS, WiFi, WhatsApp, vCard, Event, Social Links |
+| Sayfa        | İçerik                                                                   |
+| ------------ | ------------------------------------------------------------------------ |
+| Landing Page | Hero, Features, Examples, Pricing, FAQ, Footer                           |
+| Login        | Email, Password, Forgot Password                                         |
+| Register     | Email, Password, Confirm Password                                        |
+| Dashboard    | Sidebar: Dashboard, Create QR, My QR Codes, Settings                     |
+| Create QR    | URL, Text, Email, Phone, SMS, WiFi, WhatsApp, vCard, Event, Social Links |
 
 ## 6. QR Özelleştirme Gereksinimleri
 
@@ -83,12 +89,12 @@ Desteklenen özellikler: canlı önizleme, logo gömme, gradient, yuvarlatılmı
 
 ## 8. Doğrulama (Validation) Kuralları
 
-| Tip | Kural |
-|---|---|
-| URL | Geçerli bir URL olmalı |
+| Tip   | Kural                                 |
+| ----- | ------------------------------------- |
+| URL   | Geçerli bir URL olmalı                |
 | Email | Geçerli bir e-posta formatında olmalı |
 | Phone | Yalnızca geçerli karakterler içermeli |
-| WiFi | SSID zorunlu, şifre opsiyonel |
+| WiFi  | SSID zorunlu, şifre opsiyonel         |
 
 ## 9. Güvenlik Gereksinimleri
 
@@ -103,6 +109,7 @@ Desteklenen özellikler: canlı önizleme, logo gömme, gradient, yuvarlatılmı
 **Responsive:** Desktop, Tablet, Mobile — tüm sayfalar tam responsive olmalı
 
 **Erişilebilirlik (Accessibility):**
+
 - Klavye navigasyonu
 - Uygun kontrast oranları
 - Semantic HTML
@@ -110,13 +117,13 @@ Desteklenen özellikler: canlı önizleme, logo gömme, gradient, yuvarlatılmı
 
 ## 11. Fonksiyonel Olmayan Gereksinimler (NFR)
 
-| Kategori | Gereksinim |
-|---|---|
-| Performance | Lighthouse skoru > 90 |
-| SEO | Landing page optimize edilmiş olmalı |
-| Security | Authentication zorunlu |
-| Scalability | Modüler mimari |
-| Maintainability | Yeniden kullanılabilir bileşenler |
+| Kategori        | Gereksinim                           |
+| --------------- | ------------------------------------ |
+| Performance     | Lighthouse skoru > 90                |
+| SEO             | Landing page optimize edilmiş olmalı |
+| Security        | Authentication zorunlu               |
+| Scalability     | Modüler mimari                       |
+| Maintainability | Yeniden kullanılabilir bileşenler    |
 
 ## 12. Definition of Done
 

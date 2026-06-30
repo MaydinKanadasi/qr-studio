@@ -12,15 +12,15 @@ QR Studio'nun arayüzü; sade, modern, "araç hissiyatı" veren (tool-like) bir 
 
 ## 3. Renk Sistemi
 
-| Token | Kullanım |
-|---|---|
-| `primary` | Ana aksiyon butonları, vurgular |
-| `secondary` | İkincil aksiyonlar |
-| `background` | Sayfa arka planı |
-| `foreground` | Ana metin rengi |
-| `muted` | İkincil metin, açıklamalar |
-| `destructive` | Silme/tehlikeli aksiyonlar |
-| `border` | Kart ve input kenarlıkları |
+| Token         | Kullanım                        |
+| ------------- | ------------------------------- |
+| `primary`     | Ana aksiyon butonları, vurgular |
+| `secondary`   | İkincil aksiyonlar              |
+| `background`  | Sayfa arka planı                |
+| `foreground`  | Ana metin rengi                 |
+| `muted`       | İkincil metin, açıklamalar      |
+| `destructive` | Silme/tehlikeli aksiyonlar      |
+| `border`      | Kart ve input kenarlıkları      |
 
 > Renkler Tailwind config içinde CSS değişkenleri olarak tanımlanır; Dark Mode desteği (gelecek özellik) için bu yapı önceden hazırlanmalıdır.
 
@@ -38,11 +38,11 @@ QR Studio'nun arayüzü; sade, modern, "araç hissiyatı" veren (tool-like) bir 
 
 ## 6. Responsive Davranış
 
-| Breakpoint | Davranış |
-|---|---|
-| Desktop | Sidebar açık, editör iki sütunlu |
-| Tablet | Sidebar daraltılabilir, editör iki sütunlu kalabilir |
-| Mobile | Sidebar drawer/hamburger menüye dönüşür, editör tek sütun (önizleme üstte sticky) |
+| Breakpoint | Davranış                                                                          |
+| ---------- | --------------------------------------------------------------------------------- |
+| Desktop    | Sidebar açık, editör iki sütunlu                                                  |
+| Tablet     | Sidebar daraltılabilir, editör iki sütunlu kalabilir                              |
+| Mobile     | Sidebar drawer/hamburger menüye dönüşür, editör tek sütun (önizleme üstte sticky) |
 
 ## 7. Form ve Validasyon
 

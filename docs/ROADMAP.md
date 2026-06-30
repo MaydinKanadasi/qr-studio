@@ -90,19 +90,19 @@ Bu doküman, projenin git/github üzerinden adım adım nasıl ilerleyeceğini t
 
 ## Gelecek Sürümler (v2+)
 
-| Özellik | Açıklama |
-|---|---|
-| Dynamic QR | İçeriği sonradan değiştirilebilen QR'lar |
-| Analytics | Tarama istatistikleri |
-| Password Protected QR | Şifre korumalı QR içerikleri |
-| Expiration Date | Son kullanma tarihi olan QR'lar |
-| Bulk QR Generator | Toplu QR üretimi |
-| AI QR Generator | Replicate API ile sanatsal QR üretimi (bkz. `ARCHITECTURE.md` §7) |
-| QR Templates | Hazır şablonlar |
-| Dark Mode | Karanlık tema |
-| Team Workspace | Takım bazlı çalışma alanları |
-| Public API | Harici geliştirici erişimi |
-| Subscription Plans + Stripe | Ücretli plan ve ödeme entegrasyonu |
+| Özellik                     | Açıklama                                                          |
+| --------------------------- | ----------------------------------------------------------------- |
+| Dynamic QR                  | İçeriği sonradan değiştirilebilen QR'lar                          |
+| Analytics                   | Tarama istatistikleri                                             |
+| Password Protected QR       | Şifre korumalı QR içerikleri                                      |
+| Expiration Date             | Son kullanma tarihi olan QR'lar                                   |
+| Bulk QR Generator           | Toplu QR üretimi                                                  |
+| AI QR Generator             | Replicate API ile sanatsal QR üretimi (bkz. `ARCHITECTURE.md` §7) |
+| QR Templates                | Hazır şablonlar                                                   |
+| Dark Mode                   | Karanlık tema                                                     |
+| Team Workspace              | Takım bazlı çalışma alanları                                      |
+| Public API                  | Harici geliştirici erişimi                                        |
+| Subscription Plans + Stripe | Ücretli plan ve ödeme entegrasyonu                                |
 
 ## Git Branch Stratejisi (Öneri)
 
