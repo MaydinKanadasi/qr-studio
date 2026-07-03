@@ -1,6 +1,9 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 
+const protectedRoutes = ['/dashboard', '/create', '/my-qr-codes', '/settings'];
+const authRoutes = ['/login', '/register'];
+
 export async function proxy(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request });
 
@@ -23,8 +26,21 @@ export async function proxy(request: NextRequest) {
     }
   );
 
-  // Oturumu yeniler; gerekirse request/response cookie'lerini günceller
-  await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
+  const { pathname } = request.nextUrl;
+
+  const isProtected = protectedRoutes.some((r) => pathname.startsWith(r));
+  const isAuthRoute = authRoutes.some((r) => pathname.startsWith(r));
+
+  // Giriş yapmamış kullanıcı korumalı sayfaya gitmeye çalışırsa login'e yönlendir
+  if (isProtected && !user) {
+    return NextResponse.redirect(new URL('/login', request.url));
+  }
+
+  // Giriş yapmış kullanıcı login/register'a gitmeye çalışırsa dashboard'a yönlendir
+  if (isAuthRoute && user) {
+    return NextResponse.redirect(new URL('/dashboard', request.url));
+  }
 
   return supabaseResponse;
 }
