@@ -10,7 +10,21 @@ Format: `## [Sürüm] - YYYY-MM-DD`
 
 ### Planned
 
-- Faz 1: Authentication (bkz. `ROADMAP.md`)
+- Faz 2: Landing Page (bkz. `ROADMAP.md`)
+
+---
+
+## [0.2.0] - 2026-07-03
+
+### Added
+
+- Supabase Auth entegrasyonu (email/password)
+- Register sayfası (e-posta doğrulama akışı dahil)
+- Login sayfası
+- Route koruması: giriş yapmayanlar `/login`'e, yapanlar `/dashboard`'a yönlendiriliyor
+- `public.users` tablosu oluşturuldu, RLS politikaları eklendi
+- Yeni kullanıcı kaydında otomatik profil oluşturan trigger eklendi
+- Geçici Dashboard sayfası (kullanıcı e-postası gösterimi)
 
 ---
 
