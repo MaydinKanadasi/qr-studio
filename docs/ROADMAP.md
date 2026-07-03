@@ -13,11 +13,11 @@ Bu doküman, projenin git/github üzerinden adım adım nasıl ilerleyeceğini t
 
 ## Faz 1 — Authentication
 
-- [ ] Supabase Auth entegrasyonu
-- [ ] Register sayfası (email, password, confirm password)
-- [ ] Login sayfası (email, password, forgot password)
-- [ ] Korumalı route'lar için middleware
-- [ ] `users` tablosu ve temel RLS politikaları
+- [x] Supabase Auth entegrasyonu
+- [x] Register sayfası (email, password, confirm password)
+- [x] Login sayfası (email, password, forgot password)
+- [x] Korumalı route'lar için middleware
+- [x] `users` tablosu ve temel RLS politikaları
 
 ## Faz 2 — Landing Page
 
