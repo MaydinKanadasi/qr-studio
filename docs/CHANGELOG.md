@@ -10,7 +10,23 @@ Format: `## [Sürüm] - YYYY-MM-DD`
 
 ### Planned
 
-- Faz 4: QR Özelleştirme (bkz. `ROADMAP.md`)
+- Faz 5: Tüm QR Tipleri (bkz. `ROADMAP.md`)
+- Renk seçimine gradient desteği eklenmesi
+
+---
+
+## [0.5.0] - 2026-07-05
+
+### Added
+
+- Köşe stili seçimi (kare, nokta, ekstra yuvarlatılmış)
+- Kenar boşluğu (margin) slider'ı
+- Hata düzeltme seviyesi seçimi (L/M/Q/H)
+- Logo yükleme (PNG/SVG) ve logo boyutu slider'ı
+
+### Changed
+
+- PNG/SVG export çözünürlüğü 280px'ten 1024px'e çıkarıldı, logo ve detaylar artık net görünüyor
 
 ---
 

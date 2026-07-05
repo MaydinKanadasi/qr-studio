@@ -34,11 +34,11 @@ Bu doküman, projenin git/github üzerinden adım adım nasıl ilerleyeceğini t
 
 ## Faz 4 — QR Özelleştirme
 
-- [ ] Renk seçimi (foreground/background/gradient)
-- [ ] Dot/Corner stilleri
-- [ ] Logo yükleme ve boyutlandırma
-- [ ] Margin slider
-- [ ] Error correction seçenekleri (L/M/Q/H)
+- [ ] Renk seçimi (foreground/background tamam, gradient henüz yok)
+- [x] Dot/Corner stilleri
+- [x] Logo yükleme ve boyutlandırma
+- [x] Margin slider
+- [x] Error correction seçenekleri (L/M/Q/H)
 
 ## Faz 5 — Tüm QR Tipleri
 
