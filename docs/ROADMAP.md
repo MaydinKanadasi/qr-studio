@@ -27,10 +27,10 @@ Bu doküman, projenin git/github üzerinden adım adım nasıl ilerleyeceğini t
 
 ## Faz 3 — QR Üretim Çekirdeği
 
-- [ ] `qr-code-styling` entegrasyonu
-- [ ] Temel QR tipi olarak URL desteği
-- [ ] Live preview mekanizması
-- [ ] PNG/SVG export
+- [x] `qr-code-styling` entegrasyonu
+- [x] Temel QR tipi olarak URL desteği
+- [x] Live preview mekanizması
+- [x] PNG/SVG export
 
 ## Faz 4 — QR Özelleştirme
 

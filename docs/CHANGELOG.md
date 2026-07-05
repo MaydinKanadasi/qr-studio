@@ -10,7 +10,19 @@ Format: `## [Sürüm] - YYYY-MM-DD`
 
 ### Planned
 
-- Faz 3: QR Üretim Çekirdeği (bkz. `ROADMAP.md`)
+- Faz 4: QR Özelleştirme (bkz. `ROADMAP.md`)
+
+---
+
+## [0.4.0] - 2026-07-05
+
+### Added
+
+- `qr-code-styling` kütüphanesi entegre edildi
+- URL tipi için QR kod oluşturma desteği
+- Canlı önizleme (`useQrCode` hook'u ile anlık güncelleme)
+- PNG ve SVG formatlarında QR kod indirme
+- `/create` sayfası ve `QrEditor` bileşeni eklendi
 
 ---
 
