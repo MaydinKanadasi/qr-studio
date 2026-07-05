@@ -21,7 +21,7 @@ Bu doküman, projenin git/github üzerinden adım adım nasıl ilerleyeceğini t
 
 ## Faz 2 — Landing Page
 
-- [ ] Hero, Features, Examples, Pricing, FAQ, Footer bölümleri
+- [x] Hero, Features, Examples, Pricing, FAQ, Footer bölümleri
 - [ ] Responsive tasarım (desktop/tablet/mobile)
 - [ ] SEO temel optimizasyonları
 

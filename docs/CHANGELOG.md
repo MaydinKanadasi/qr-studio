@@ -10,7 +10,16 @@ Format: `## [Sürüm] - YYYY-MM-DD`
 
 ### Planned
 
-- Faz 2: Landing Page (bkz. `ROADMAP.md`)
+- Faz 3: QR Üretim Çekirdeği (bkz. `ROADMAP.md`)
+
+---
+
+## [0.3.0] - 2026-07-03
+
+### Added
+
+- Landing page: Navbar, Hero, Features, Examples, Pricing, FAQ, Footer section'ları
+- Ana sayfa (`app/page.tsx`) landing page bileşenlerinden oluşacak şekilde yeniden yapılandırıldı
 
 ---
 
