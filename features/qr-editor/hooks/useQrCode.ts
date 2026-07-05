@@ -3,9 +3,12 @@
 import { useEffect, useRef, useState } from 'react';
 import QRCodeStyling, { type Options } from 'qr-code-styling';
 
+const PREVIEW_SIZE = 280;
+const EXPORT_SIZE = 1024;
+
 const defaultOptions: Options = {
-  width: 280,
-  height: 280,
+  width: PREVIEW_SIZE,
+  height: PREVIEW_SIZE,
   type: 'svg',
   data: 'https://qrstudio.app',
   margin: 8,
@@ -21,6 +24,14 @@ const defaultOptions: Options = {
   },
   cornersSquareOptions: {
     type: 'extra-rounded',
+  },
+  cornersDotOptions: {
+    type: 'dot',
+  },
+  imageOptions: {
+    crossOrigin: 'anonymous',
+    margin: 4,
+    imageSize: 0.4,
   },
 };
 
@@ -50,9 +61,37 @@ export function useQrCode(initialData: string = 'https://qrstudio.app') {
     setOptions((prev) => ({ ...prev, ...patch }));
   }
 
-  async function download(extension: 'png' | 'svg') {
-    await qrRef.current?.download({ extension });
+  function setLogo(file: File | null) {
+    if (!file) {
+      updateOption({ image: undefined });
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      updateOption({ image: reader.result as string });
+    };
+    reader.readAsDataURL(file);
   }
 
-  return { containerRef, options, updateOption, download };
+  function setLogoSize(imageSize: number) {
+    updateOption({
+      imageOptions: { ...options.imageOptions, imageSize },
+    });
+  }
+
+  async function download(extension: 'png' | 'svg') {
+    // Export için yüksek çözünürlüklü ayrı bir instance oluştur.
+    // Önizlemedeki 280px boyutu ekranda iyi görünür ama indirilen
+    // dosyada logo/detaylar bulanık çıkar; bu yüzden export'ta
+    // boyutu büyütüyoruz (SVG zaten vektörel olduğu için width/height
+    // sadece viewBox'ı etkiler, kalite kaybı olmaz).
+    const exportQr = new QRCodeStyling({
+      ...options,
+      width: EXPORT_SIZE,
+      height: EXPORT_SIZE,
+    });
+    await exportQr.download({ extension });
+  }
+
+  return { containerRef, options, updateOption, setLogo, setLogoSize, download };
 }
