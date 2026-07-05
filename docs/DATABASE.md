@@ -24,27 +24,26 @@ logos          │
 
 > Not: Bu tablo, Supabase'in yerleşik `auth.users` tablosuyla ilişkilidir. Gerekirse profil bilgileri için `public.users` adında bir genişletme tablosu kullanılabilir.
 
-| Kolon      | Tip         | Açıklama                           |
-| ---------- | ----------- | ---------------------------------- |
-| id         | uuid (PK)   | Supabase auth.users.id ile eşleşir |
-| email      | text        | Kullanıcı e-postası                |
-| created_at | timestamptz | Kayıt oluşturulma zamanı           |
+| Kolon | Tip | Açıklama |
+|---|---|---|
+| id | uuid (PK) | Supabase auth.users.id ile eşleşir |
+| email | text | Kullanıcı e-postası |
+| created_at | timestamptz | Kayıt oluşturulma zamanı |
 
 ### 3.2 `qr_codes`
 
-| Kolon         | Tip                                   | Açıklama                                                                              |
-| ------------- | ------------------------------------- | ------------------------------------------------------------------------------------- |
-| id            | uuid (PK, default: gen_random_uuid()) | QR kod kimliği                                                                        |
-| user_id       | uuid (FK → users.id)                  | Sahibi olan kullanıcı                                                                 |
-| name          | text                                  | Kullanıcının verdiği isim                                                             |
-| type          | text                                  | url, text, email, phone, sms, wifi, whatsapp, vcard, event, social                    |
-| content       | jsonb                                 | QR'ın kodladığı asıl veri (tipine göre değişen yapı)                                  |
-| settings_json | jsonb                                 | Görsel ayarlar: renkler, dot/corner stilleri, margin, error correction, logo ayarları |
-| created_at    | timestamptz                           | Oluşturulma zamanı                                                                    |
-| updated_at    | timestamptz                           | Son güncellenme zamanı                                                                |
+| Kolon | Tip | Açıklama |
+|---|---|---|
+| id | uuid (PK, default: gen_random_uuid()) | QR kod kimliği |
+| user_id | uuid (FK → users.id) | Sahibi olan kullanıcı |
+| name | text | Kullanıcının verdiği isim |
+| type | text | url, text, email, phone, sms, wifi, whatsapp, vcard, event, social |
+| content | jsonb | QR'ın kodladığı asıl veri (tipine göre değişen yapı) |
+| settings_json | jsonb | Görsel ayarlar: renkler, dot/corner stilleri, margin, error correction, logo ayarları |
+| created_at | timestamptz | Oluşturulma zamanı |
+| updated_at | timestamptz | Son güncellenme zamanı |
 
 **`settings_json` örnek yapı:**
-
 ```json
 {
   "foregroundColor": "#000000",
@@ -63,11 +62,11 @@ logos          │
 
 ### 3.3 `logos`
 
-| Kolon     | Tip                     | Açıklama                                |
-| --------- | ----------------------- | --------------------------------------- |
-| id        | uuid (PK)               | Logo kimliği                            |
-| qr_id     | uuid (FK → qr_codes.id) | Bağlı olduğu QR kodu                    |
-| image_url | text                    | Supabase Storage üzerindeki dosya URL'i |
+| Kolon | Tip | Açıklama |
+|---|---|---|
+| id | uuid (PK) | Logo kimliği |
+| qr_id | uuid (FK → qr_codes.id) | Bağlı olduğu QR kodu |
+| image_url | text | Supabase Storage üzerindeki dosya URL'i |
 
 ## 4. İlişkiler
 
@@ -103,8 +102,8 @@ create policy "Users can delete own qr codes"
 
 ## 6. Storage (Supabase Storage)
 
-| Bucket  | Amaç                                                   | Erişim                                                 |
-| ------- | ------------------------------------------------------ | ------------------------------------------------------ |
+| Bucket | Amaç | Erişim |
+|---|---|---|
 | `logos` | Kullanıcı tarafından yüklenen logo dosyaları (PNG/SVG) | Sadece sahibi yazabilir, public okuma (QR export için) |
 
 ## 7. Index Önerileri
