@@ -41,8 +41,8 @@ export default function RegisterPage() {
       <div className="space-y-4 text-center">
         <h1 className="text-2xl font-bold">E-postanı doğrula</h1>
         <p className="text-muted-foreground text-sm">
-          <strong>{email}</strong> adresine bir doğrulama e-postası gönderdik.
-          Hesabını aktive etmek için e-postanı kontrol et.
+          <strong>{email}</strong> adresine bir doğrulama e-postası gönderdik. Hesabını aktive etmek
+          için e-postanı kontrol et.
         </p>
         <Link href="/login" className="text-sm underline">
           Giriş sayfasına dön
@@ -55,9 +55,7 @@ export default function RegisterPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold">Kayıt Ol</h1>
-        <p className="text-muted-foreground text-sm mt-1">
-          Yeni hesap oluştur
-        </p>
+        <p className="text-muted-foreground text-sm mt-1">Yeni hesap oluştur</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
