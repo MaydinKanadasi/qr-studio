@@ -26,7 +26,9 @@ export async function proxy(request: NextRequest) {
     }
   );
 
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   const { pathname } = request.nextUrl;
 
   const isProtected = protectedRoutes.some((r) => pathname.startsWith(r));
@@ -46,7 +48,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-  ],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)'],
 };

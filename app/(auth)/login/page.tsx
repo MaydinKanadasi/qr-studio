@@ -35,9 +35,7 @@ export default function LoginPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold">Giriş Yap</h1>
-        <p className="text-muted-foreground text-sm mt-1">
-          Hesabına giriş yap
-        </p>
+        <p className="text-muted-foreground text-sm mt-1">Hesabına giriş yap</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
