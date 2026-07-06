@@ -10,8 +10,21 @@ Format: `## [Sürüm] - YYYY-MM-DD`
 
 ### Planned
 
-- Faz 5: Tüm QR Tipleri (bkz. `ROADMAP.md`)
+- Faz 6: Veritabanı Entegrasyonu (bkz. `ROADMAP.md`)
 - Renk seçimine gradient desteği eklenmesi
+
+---
+
+## [0.6.0] - 2026-07-05
+
+### Added
+
+- Tüm QR içerik tipleri eklendi: Text, Email, Phone, SMS, WiFi, WhatsApp, vCard, Event, Social Links
+- Her tip için özel form bileşenleri (`features/qr-editor/components/forms/`)
+- QR Kod Tipi seçici (dropdown) ile dinamik form gösterimi
+- Her tip için içeriği doğru QR string formatına çeviren encode fonksiyonları (`lib/qr/encoders.ts`)
+- Her tip için Zod validasyon şemaları (`lib/validation/qr-schemas.ts`)
+- Paylaşılan TypeScript tipleri (`types/qr.ts`)
 
 ---
 

@@ -42,13 +42,13 @@ Bu doküman, projenin git/github üzerinden adım adım nasıl ilerleyeceğini t
 
 ## Faz 5 — Tüm QR Tipleri
 
-- [ ] Text, Email, Phone, SMS
-- [ ] WiFi (SSID + şifre)
-- [ ] WhatsApp
-- [ ] vCard
-- [ ] Event
-- [ ] Social Links
-- [ ] Her tip için Zod validasyon şemaları
+- [x] Text, Email, Phone, SMS
+- [x] WiFi (SSID + şifre)
+- [x] WhatsApp
+- [x] vCard
+- [x] Event
+- [x] Social Links
+- [x] Her tip için Zod validasyon şemaları
 
 ## Faz 6 — Veritabanı Entegrasyonu
 
