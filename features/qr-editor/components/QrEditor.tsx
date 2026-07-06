@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { encodeQrContent } from '@/lib/qr/encoders';
 import type { QrType } from '@/types/qr';
 import { QrTypeForm, qrTypeLabels, defaultContentByType } from './QrTypeForm';
+import { saveQrCode } from '@/lib/qr/queries';
 
 const qrTypes = Object.keys(qrTypeLabels) as QrType[];
 
@@ -14,6 +15,9 @@ export function QrEditor() {
   const [qrType, setQrType] = useState<QrType>('url');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [content, setContent] = useState<any>(defaultContentByType.url);
+  const [qrName, setQrName] = useState('Adsız QR Kod');
+  const [saving, setSaving] = useState(false);
+  const [saveMessage, setSaveMessage] = useState<string | null>(null);
 
   // Tip değiştiğinde ilgili varsayılan içeriği yükle
   function handleTypeChange(newType: QrType) {
@@ -32,10 +36,52 @@ export function QrEditor() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qrType, content]);
 
+  async function handleSave() {
+    setSaving(true);
+    setSaveMessage(null);
+
+    const result = await saveQrCode({
+      name: qrName || 'Adsız QR Kod',
+      type: qrType,
+      content,
+      settingsJson: {
+        dotsOptions: options.dotsOptions,
+        backgroundOptions: options.backgroundOptions,
+        cornersSquareOptions: options.cornersSquareOptions,
+        margin: options.margin,
+        qrOptions: options.qrOptions,
+        imageOptions: options.imageOptions,
+      },
+    });
+
+    setSaving(false);
+
+    if (result.error) {
+      setSaveMessage(`Hata: ${result.error}`);
+      return;
+    }
+
+    setSaveMessage('QR kod kaydedildi!');
+  }
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto p-6">
       {/* Sol: Kontroller */}
       <div className="flex flex-col gap-6">
+        <div className="space-y-2">
+          <label htmlFor="qrName" className="text-sm font-medium">
+            QR Kod Adı
+          </label>
+          <input
+            id="qrName"
+            type="text"
+            value={qrName}
+            onChange={(e) => setQrName(e.target.value)}
+            placeholder="Adsız QR Kod"
+            className="w-full border border-border rounded-md px-3 py-2 text-sm bg-background"
+          />
+        </div>
+
         <div className="space-y-2">
           <label htmlFor="qrType" className="text-sm font-medium">
             QR Kod Tipi
@@ -220,8 +266,22 @@ export function QrEditor() {
           )}
         </div>
 
+        {saveMessage && (
+          <p
+            className={`text-sm ${saveMessage.startsWith('Hata') ? 'text-destructive' : 'text-green-600'}`}
+          >
+            {saveMessage}
+          </p>
+        )}
+
         <div className="flex gap-3">
-          <Button onClick={() => download('png')} className="flex-1">
+          <Button onClick={handleSave} disabled={saving} className="flex-1">
+            {saving ? 'Kaydediliyor...' : 'Kaydet'}
+          </Button>
+        </div>
+
+        <div className="flex gap-3">
+          <Button onClick={() => download('png')} variant="outline" className="flex-1">
             PNG İndir
           </Button>
           <Button onClick={() => download('svg')} variant="outline" className="flex-1">
