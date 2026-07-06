@@ -59,11 +59,11 @@ Bu doküman, projenin git/github üzerinden adım adım nasıl ilerleyeceğini t
 
 ## Faz 7 — Dashboard
 
-- [ ] İstatistik kartları (Total QR Codes, Downloads, Favorites)
-- [ ] Recent QR Codes tablosu (Name, Type, Created Date, Last Updated, Actions)
-- [ ] Edit/Delete/Download aksiyonları
-- [ ] My QR Codes sayfası (liste + filtreleme)
-- [ ] Settings sayfası (profil yönetimi)
+- [x] İstatistik kartları (Total QR Codes, Downloads, Favorites)
+- [x] Recent QR Codes tablosu (Name, Type, Created Date, Last Updated, Actions)
+- [ ] Edit/Delete/Download aksiyonları (Delete tamam, Edit/Download sayacı henüz yok)
+- [ ] My QR Codes sayfası (liste tamam, filtreleme henüz yok)
+- [x] Settings sayfası (profil yönetimi)
 
 ## Faz 8 — Erişilebilirlik ve Cilalama (Polish)
 

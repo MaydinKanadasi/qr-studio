@@ -10,9 +10,25 @@ Format: `## [Sürüm] - YYYY-MM-DD`
 
 ### Planned
 
-- Faz 7: Dashboard (bkz. `ROADMAP.md`)
+- Faz 8: Erişilebilirlik ve Cilalama (bkz. `ROADMAP.md`)
+- QR kod düzenleme (Edit) akışı
+- İndirme sayacının gerçek indirme aksiyonuna bağlanması
+- My QR Codes sayfasına filtreleme
 - Supabase Storage bucket kurulumu (logolar için)
 - Renk seçimine gradient desteği eklenmesi
+
+---
+
+## [0.8.0] - 2026-07-06
+
+### Added
+
+- `qr_codes` tablosuna `download_count` ve `is_favorite` kolonları eklendi
+- Dashboard sayfasına gerçek verilerle istatistik kartları (Toplam QR Kod, Toplam İndirme, Favoriler)
+- Dashboard'a "Son QR Kodlar" tablosu eklendi
+- Favori ekleme/çıkarma butonu (`FavoriteButton`) ve My QR Codes sayfasına entegrasyonu
+- Settings sayfası: e-posta, hesap oluşturulma tarihi, çıkış yap butonu
+- `increment_download_count` Postgres fonksiyonu ve `getDashboardStats` sorgusu
 
 ---
 
