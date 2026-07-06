@@ -11,6 +11,8 @@ export interface QrCodeRecord {
   type: QrType;
   content: Record<string, unknown>;
   settings_json: Record<string, unknown>;
+  download_count: number;
+  is_favorite: boolean;
   created_at: string;
   updated_at: string;
 }
@@ -49,6 +51,7 @@ export async function saveQrCode(input: SaveQrCodeInput) {
   }
 
   revalidatePath('/my-qr-codes');
+  revalidatePath('/dashboard');
   return { data: data as QrCodeRecord, error: null };
 }
 
@@ -73,6 +76,7 @@ export async function updateQrCode(id: string, input: Partial<SaveQrCodeInput>) 
   }
 
   revalidatePath('/my-qr-codes');
+  revalidatePath('/dashboard');
   return { data: data as QrCodeRecord, error: null };
 }
 
@@ -85,6 +89,7 @@ export async function deleteQrCode(id: string) {
   }
 
   revalidatePath('/my-qr-codes');
+  revalidatePath('/dashboard');
   return { error: null };
 }
 
@@ -111,4 +116,57 @@ export async function getQrCodeById(id: string) {
   }
 
   return { data: data as QrCodeRecord, error: null };
+}
+
+export async function toggleFavorite(id: string, isFavorite: boolean) {
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from('qr_codes')
+    .update({ is_favorite: isFavorite })
+    .eq('id', id);
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  revalidatePath('/my-qr-codes');
+  revalidatePath('/dashboard');
+  return { error: null };
+}
+
+export async function incrementDownloadCount(id: string) {
+  const supabase = await createClient();
+  const { error } = await supabase.rpc('increment_download_count', { qr_id: id });
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  revalidatePath('/my-qr-codes');
+  revalidatePath('/dashboard');
+  return { error: null };
+}
+
+export interface DashboardStats {
+  totalQrCodes: number;
+  totalDownloads: number;
+  totalFavorites: number;
+}
+
+export async function getDashboardStats(): Promise<{ data: DashboardStats; error: string | null }> {
+  const supabase = await createClient();
+  const { data, error } = await supabase.from('qr_codes').select('download_count, is_favorite');
+
+  if (error) {
+    return {
+      data: { totalQrCodes: 0, totalDownloads: 0, totalFavorites: 0 },
+      error: error.message,
+    };
+  }
+
+  const totalQrCodes = data.length;
+  const totalDownloads = data.reduce((sum, row) => sum + (row.download_count ?? 0), 0);
+  const totalFavorites = data.filter((row) => row.is_favorite).length;
+
+  return { data: { totalQrCodes, totalDownloads, totalFavorites }, error: null };
 }
