@@ -10,8 +10,24 @@ Format: `## [Sürüm] - YYYY-MM-DD`
 
 ### Planned
 
-- Faz 6: Veritabanı Entegrasyonu (bkz. `ROADMAP.md`)
+- Faz 7: Dashboard (bkz. `ROADMAP.md`)
+- Supabase Storage bucket kurulumu (logolar için)
 - Renk seçimine gradient desteği eklenmesi
+
+---
+
+## [0.7.0] - 2026-07-06
+
+### Added
+
+- `qr_codes` ve `logos` tabloları oluşturuldu, RLS politikaları eklendi
+- QR kod kaydetme, listeleme, güncelleme ve silme fonksiyonları (`lib/qr/queries.ts`)
+- `/my-qr-codes` sayfası: kaydedilmiş QR kodların listesi ve silme aksiyonu
+- `QrEditor`'e "Kaydet" butonu ve QR kod adı alanı eklendi
+
+### Fixed
+
+- `authenticated` rolüne `qr_codes` ve `logos` tabloları için gerekli GRANT izinleri verildi
 
 ---
 

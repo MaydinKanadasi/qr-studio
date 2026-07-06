@@ -52,10 +52,10 @@ Bu doküman, projenin git/github üzerinden adım adım nasıl ilerleyeceğini t
 
 ## Faz 6 — Veritabanı Entegrasyonu
 
-- [ ] `qr_codes` ve `logos` tablolarının oluşturulması (bkz. `DATABASE.md`)
-- [ ] RLS politikalarının uygulanması
+- [x] `qr_codes` ve `logos` tablolarının oluşturulması (bkz. `DATABASE.md`)
+- [x] RLS politikalarının uygulanması
 - [ ] Supabase Storage bucket kurulumu (logos)
-- [ ] QR kaydetme/güncelleme/silme akışlarının bağlanması
+- [x] QR kaydetme/güncelleme/silme akışlarının bağlanması
 
 ## Faz 7 — Dashboard
 
