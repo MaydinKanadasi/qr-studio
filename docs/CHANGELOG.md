@@ -10,12 +10,32 @@ Format: `## [Sürüm] - YYYY-MM-DD`
 
 ### Planned
 
-- Faz 8: Erişilebilirlik ve Cilalama (bkz. `ROADMAP.md`)
+- Faz 9: Deployment (bkz. `ROADMAP.md`)
+- Ekran okuyucu testleri ve Lighthouse denetimi
 - QR kod düzenleme (Edit) akışı
 - İndirme sayacının gerçek indirme aksiyonuna bağlanması
 - My QR Codes sayfasına filtreleme
 - Supabase Storage bucket kurulumu (logolar için)
 - Renk seçimine gradient desteği eklenmesi
+
+---
+
+## [0.9.0] - 2026-07-06
+
+### Added
+
+- Dashboard için sol sidebar navigasyonu (Dashboard, Create QR, My QR Codes, Settings)
+- Landing page'e "İçeriğe geç" (skip-to-content) linki
+
+### Fixed
+
+- Kök layout'ta `lang="en"` yanlışlıkla `lang="tr"` olarak düzeltildi
+- Sayfa metadata'sı (title/description) "Create Next App" varsayılanından QR Studio'ya özel içerikle değiştirildi
+- Navbar'daki linkler `<a>` yerine Next.js `<Link>` bileşenine çevrildi (client-side navigasyon)
+
+### Changed
+
+- Navbar ve dashboard navigasyonuna semantic `nav` ve `aria-label`/`aria-current` eklendi
 
 ---
 
