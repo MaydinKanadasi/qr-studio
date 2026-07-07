@@ -67,8 +67,8 @@ Bu doküman, projenin git/github üzerinden adım adım nasıl ilerleyeceğini t
 
 ## Faz 8 — Erişilebilirlik ve Cilalama (Polish)
 
-- [ ] Klavye navigasyonu
-- [ ] Kontrast/semantic HTML kontrolleri
+- [x] Klavye navigasyonu
+- [x] Kontrast/semantic HTML kontrolleri
 - [ ] Ekran okuyucu testleri
 - [ ] Lighthouse skoru > 90 hedefine ulaşma
 
