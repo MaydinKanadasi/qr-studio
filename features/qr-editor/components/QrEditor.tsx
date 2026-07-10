@@ -21,6 +21,20 @@ interface InitialQr {
 
 const qrTypes = Object.keys(qrTypeLabels) as QrType[];
 
+function getSolidColor(colorOrGradient?: {
+  color?: string;
+  gradient?: { colorStops: { color: string }[] };
+}): string {
+  return colorOrGradient?.color ?? '#000000';
+}
+
+function getGradientColors(colorOrGradient?: {
+  gradient?: { colorStops: { color: string }[] };
+}): [string, string] {
+  const stops = colorOrGradient?.gradient?.colorStops;
+  return [stops?.[0]?.color ?? '#000000', stops?.[1]?.color ?? '#ffffff'];
+}
+
 export function QrEditor({ initialQr }: { initialQr?: InitialQr }) {
   const router = useRouter();
   const isEditing = Boolean(initialQr);
@@ -40,6 +54,91 @@ export function QrEditor({ initialQr }: { initialQr?: InitialQr }) {
     initialEncoded,
     initialQr?.settingsJson as Partial<Parameters<typeof useQrCode>[1]>
   );
+
+  const fgHasGradient = Boolean(options.dotsOptions?.gradient);
+  const bgHasGradient = Boolean(options.backgroundOptions?.gradient);
+  const [fgColor1, fgColor2] = getGradientColors(options.dotsOptions);
+  const [bgColor1, bgColor2] = getGradientColors(options.backgroundOptions);
+
+  function toggleFgGradient(enabled: boolean) {
+    if (enabled) {
+      const base = getSolidColor(options.dotsOptions);
+      updateOption({
+        dotsOptions: {
+          ...options.dotsOptions,
+          gradient: {
+            type: 'linear',
+            rotation: 0,
+            colorStops: [
+              { offset: 0, color: base },
+              { offset: 1, color: '#000000' },
+            ],
+          },
+        },
+      });
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { gradient: _gradient, ...rest } = options.dotsOptions ?? {};
+      updateOption({ dotsOptions: { ...rest, color: fgColor1 } });
+    }
+  }
+
+  function toggleBgGradient(enabled: boolean) {
+    if (enabled) {
+      const base = getSolidColor(options.backgroundOptions);
+      updateOption({
+        backgroundOptions: {
+          ...options.backgroundOptions,
+          gradient: {
+            type: 'linear',
+            rotation: 0,
+            colorStops: [
+              { offset: 0, color: base },
+              { offset: 1, color: '#ffffff' },
+            ],
+          },
+        },
+      });
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { gradient: _gradient, ...rest } = options.backgroundOptions ?? {};
+      updateOption({ backgroundOptions: { ...rest, color: bgColor1 } });
+    }
+  }
+
+  function setFgGradientStop(index: 0 | 1, color: string) {
+    const stops = options.dotsOptions?.gradient?.colorStops ?? [];
+    const newStops = [...stops];
+    newStops[index] = { offset: index, color };
+    updateOption({
+      dotsOptions: {
+        ...options.dotsOptions,
+        gradient: {
+          ...options.dotsOptions?.gradient,
+          type: options.dotsOptions?.gradient?.type ?? 'linear',
+          rotation: options.dotsOptions?.gradient?.rotation ?? 0,
+          colorStops: newStops,
+        },
+      },
+    });
+  }
+
+  function setBgGradientStop(index: 0 | 1, color: string) {
+    const stops = options.backgroundOptions?.gradient?.colorStops ?? [];
+    const newStops = [...stops];
+    newStops[index] = { offset: index, color };
+    updateOption({
+      backgroundOptions: {
+        ...options.backgroundOptions,
+        gradient: {
+          ...options.backgroundOptions?.gradient,
+          type: options.backgroundOptions?.gradient?.type ?? 'linear',
+          rotation: options.backgroundOptions?.gradient?.rotation ?? 0,
+          colorStops: newStops,
+        },
+      },
+    });
+  }
 
   // Tip değiştiğinde ilgili varsayılan içeriği yükle
   function handleTypeChange(newType: QrType) {
@@ -144,15 +243,38 @@ export function QrEditor({ initialQr }: { initialQr?: InitialQr }) {
         </div>
 
         <div className="border-t border-border pt-6 flex flex-col gap-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label htmlFor="fgColor" className="text-sm font-medium">
-                Ön Plan Rengi
+          {/* Ön Plan Rengi */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <label className="text-sm font-medium">Ön Plan Rengi</label>
+              <label className="flex items-center gap-2 text-xs text-muted-foreground cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={fgHasGradient}
+                  onChange={(e) => toggleFgGradient(e.target.checked)}
+                />
+                Gradient
               </label>
+            </div>
+            {fgHasGradient ? (
+              <div className="flex gap-2">
+                <input
+                  type="color"
+                  value={fgColor1}
+                  onChange={(e) => setFgGradientStop(0, e.target.value)}
+                  className="flex-1 h-10 border border-border rounded-md cursor-pointer"
+                />
+                <input
+                  type="color"
+                  value={fgColor2}
+                  onChange={(e) => setFgGradientStop(1, e.target.value)}
+                  className="flex-1 h-10 border border-border rounded-md cursor-pointer"
+                />
+              </div>
+            ) : (
               <input
-                id="fgColor"
                 type="color"
-                value={options.dotsOptions?.color ?? '#000000'}
+                value={getSolidColor(options.dotsOptions)}
                 onChange={(e) =>
                   updateOption({
                     dotsOptions: { ...options.dotsOptions, color: e.target.value },
@@ -160,16 +282,41 @@ export function QrEditor({ initialQr }: { initialQr?: InitialQr }) {
                 }
                 className="w-full h-10 border border-border rounded-md cursor-pointer"
               />
-            </div>
+            )}
+          </div>
 
-            <div className="space-y-2">
-              <label htmlFor="bgColor" className="text-sm font-medium">
-                Arka Plan Rengi
+          {/* Arka Plan Rengi */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <label className="text-sm font-medium">Arka Plan Rengi</label>
+              <label className="flex items-center gap-2 text-xs text-muted-foreground cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={bgHasGradient}
+                  onChange={(e) => toggleBgGradient(e.target.checked)}
+                />
+                Gradient
               </label>
+            </div>
+            {bgHasGradient ? (
+              <div className="flex gap-2">
+                <input
+                  type="color"
+                  value={bgColor1}
+                  onChange={(e) => setBgGradientStop(0, e.target.value)}
+                  className="flex-1 h-10 border border-border rounded-md cursor-pointer"
+                />
+                <input
+                  type="color"
+                  value={bgColor2}
+                  onChange={(e) => setBgGradientStop(1, e.target.value)}
+                  className="flex-1 h-10 border border-border rounded-md cursor-pointer"
+                />
+              </div>
+            ) : (
               <input
-                id="bgColor"
                 type="color"
-                value={options.backgroundOptions?.color ?? '#ffffff'}
+                value={getSolidColor(options.backgroundOptions)}
                 onChange={(e) =>
                   updateOption({
                     backgroundOptions: { ...options.backgroundOptions, color: e.target.value },
@@ -177,7 +324,13 @@ export function QrEditor({ initialQr }: { initialQr?: InitialQr }) {
                 }
                 className="w-full h-10 border border-border rounded-md cursor-pointer"
               />
-            </div>
+            )}
+            {(fgHasGradient || bgHasGradient) && (
+              <p className="text-xs text-muted-foreground">
+                Gradient kullanırken ön plan ve arka plan renkleri arasında yeterli kontrast
+                olduğundan emin ol, aksi halde QR kod okunamayabilir.
+              </p>
+            )}
           </div>
 
           <div className="space-y-2">
