@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { encodeQrContent } from '@/lib/qr/encoders';
 import type { QrType } from '@/types/qr';
 import { QrTypeForm, qrTypeLabels, defaultContentByType } from './QrTypeForm';
-import { saveQrCode, updateQrCode } from '@/lib/qr/queries';
+import { saveQrCode, updateQrCode, incrementDownloadCount } from '@/lib/qr/queries';
 
 interface InitialQr {
   id: string;
@@ -94,6 +94,13 @@ export function QrEditor({ initialQr }: { initialQr?: InitialQr }) {
 
     setSaveMessage(isEditing ? 'Değişiklikler kaydedildi!' : 'QR kod kaydedildi!');
     if (isEditing) router.refresh();
+  }
+
+  async function handleDownload(extension: 'png' | 'svg') {
+    await download(extension);
+    if (isEditing && initialQr) {
+      await incrementDownloadCount(initialQr.id);
+    }
   }
 
   return (
@@ -313,10 +320,10 @@ export function QrEditor({ initialQr }: { initialQr?: InitialQr }) {
         </div>
 
         <div className="flex gap-3">
-          <Button onClick={() => download('png')} variant="outline" className="flex-1">
+          <Button onClick={() => handleDownload('png')} variant="outline" className="flex-1">
             PNG İndir
           </Button>
-          <Button onClick={() => download('svg')} variant="outline" className="flex-1">
+          <Button onClick={() => handleDownload('svg')} variant="outline" className="flex-1">
             SVG İndir
           </Button>
         </div>
