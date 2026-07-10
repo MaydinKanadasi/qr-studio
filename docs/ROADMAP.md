@@ -74,10 +74,10 @@ Bu doküman, projenin git/github üzerinden adım adım nasıl ilerleyeceğini t
 
 ## Faz 9 — Deployment
 
-- [ ] Vercel'e production deployment
-- [ ] Ortam değişkenlerinin production'da ayarlanması
+- [x] Vercel'e production deployment
+- [x] Ortam değişkenlerinin production'da ayarlanması
 - [ ] Custom domain (opsiyonel)
-- [ ] Son uçtan uca test
+- [x] Son uçtan uca test
 
 ## Faz 10 — Dokümantasyon ve Teslim
 
