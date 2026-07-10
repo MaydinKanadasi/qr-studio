@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# QR Studio
 
-## Getting Started
+Kullanıcıların canlı önizleme ile yüksek derecede özelleştirilebilir QR kodlar oluşturmasını sağlayan modern bir SaaS web uygulaması. URL, WiFi, vCard, e-posta, telefon, sosyal medya linkleri ve daha fazlası için QR kod üretimini destekler.
 
-First, run the development server:
+**Canlı demo:** https://qr-studio-mak0822.vercel.app
+
+Bu proje, bir bitirme (graduation) projesi olarak geliştirilmektedir. Yazar: Muhammet Aydın Kanadaşi
+
+---
+
+## Özellikler
+
+- 🔐 Supabase Authentication (email/password)
+- 🎨 Canlı önizlemeli QR kod editörü (renk, nokta/köşe stili, kenar boşluğu, hata düzeltme seviyesi)
+- 🖼️ Logo yükleme ve boyutlandırma
+- 📱 10 farklı QR içerik tipi: URL, Text, Email, Phone, SMS, WiFi, WhatsApp, vCard, Event, Social Links
+- 💾 QR kodları kaydetme, listeleme, favorileme, silme
+- 📊 Dashboard: toplam QR kod, indirme ve favori istatistikleri
+- 📥 PNG ve SVG formatında export
+- ♿ Erişilebilirlik: klavye navigasyonu, semantic HTML, skip-to-content linki
+
+## Tech Stack
+
+| Katman     | Teknoloji                                         |
+| ---------- | ------------------------------------------------- |
+| Frontend   | Next.js (App Router), TypeScript, Tailwind CSS v4 |
+| UI         | shadcn/ui (Radix UI + Nova preset), Lucide Icons  |
+| QR Üretimi | qr-code-styling                                   |
+| Backend    | Supabase (PostgreSQL, Auth, Storage, RLS)         |
+| Validasyon | Zod, React Hook Form                              |
+| Deployment | Vercel                                            |
+
+Detaylı mimari için bkz. [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+
+## Başlarken
+
+### Gereksinimler
+
+- Node.js 20+
+- Bir [Supabase](https://supabase.com) projesi
+
+### Kurulum
+
+```bash
+git clone https://github.com/MaydinKanadasi/qr-studio.git
+cd qr-studio
+npm install
+```
+
+### Ortam Değişkenleri
+
+Proje kök dizininde bir `.env.local` dosyası oluştur:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
+SUPABASE_SECRET_KEY=your-secret-key
+```
+
+Değerleri Supabase Dashboard → Project Settings → API Keys sayfasından alabilirsin.
+
+### Veritabanı Migrationları
+
+`supabase/migrations/` altındaki SQL dosyalarını Supabase SQL Editor'de sırasıyla çalıştır (`0001`, `0002`, `0003`...).
+
+### Geliştirme Sunucusunu Başlat
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tarayıcıda [http://localhost:3000](http://localhost:3000) adresini aç.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Proje Yapısı
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/` — Next.js App Router sayfaları
+- `components/` — Genel amaçlı UI bileşenleri
+- `features/` — Özellik bazlı modüller (qr-editor vb.)
+- `lib/` — Supabase clientları, QR encode/query fonksiyonları, validasyon şemaları
+- `types/` — Paylaşılan TypeScript tipleri
+- `supabase/migrations/` — Veritabanı şeması SQL dosyaları
+- `docs/` — Proje dokümantasyonu
 
-## Learn More
+Detaylı klasör yapısı için bkz. [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
-To learn more about Next.js, take a look at the following resources:
+## Dokümantasyon
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Dosya                                                   | İçerik                                           |
+| ------------------------------------------------------- | ------------------------------------------------ |
+| [PROJECT_REQUIREMENTS.md](docs/PROJECT_REQUIREMENTS.md) | Ürün kapsamı ve gereksinimleri                   |
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md)                 | Sistem mimarisi ve klasör yapısı                 |
+| [DATABASE.md](docs/DATABASE.md)                         | Veritabanı şeması ve ilişkiler                   |
+| [API.md](docs/API.md)                                   | API endpoint'leri ve veri formatları             |
+| [ROADMAP.md](docs/ROADMAP.md)                           | Geliştirme aşamaları ve kilometre taşları        |
+| [UI_GUIDELINES.md](docs/UI_GUIDELINES.md)               | Tasarım sistemi, bileşenler ve renkler           |
+| [PROMPTS.md](docs/PROMPTS.md)                           | AI araçları için standart geliştirme prompt'ları |
+| [CONTRIBUTING.md](docs/CONTRIBUTING.md)                 | Kodlama standartları ve geliştirme kuralları     |
+| [CHANGELOG.md](docs/CHANGELOG.md)                       | Sürüm geçmişi ve yapılan değişiklikler           |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Komutlar
 
-## Deploy on Vercel
+```bash
+npm run dev           # Geliştirme sunucusu
+npm run build          # Production build
+npm run start          # Production sunucusu
+npm run lint           # ESLint kontrolü
+npm run format         # Prettier ile formatlama
+npm run format:check   # Prettier format kontrolü
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Katkı
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Kodlama standartları ve git akışı için bkz. [`docs/CONTRIBUTING.md`](docs/CONTRIBUTING.md).
+
+## Deployment
+
+Proje Vercel üzerinde `main` branch'inden otomatik deploy edilmektedir. Detaylar için bkz. [`docs/ROADMAP.md`](docs/ROADMAP.md) Faz 9.
+
+## Lisans
+
+Bu proje bir bitirme projesi kapsamında geliştirilmiştir.
