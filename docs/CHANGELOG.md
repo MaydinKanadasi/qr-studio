@@ -10,13 +10,28 @@ Format: `## [Sürüm] - YYYY-MM-DD`
 
 ### Planned
 
-- Faz 9: Deployment (bkz. `ROADMAP.md`)
+- Custom domain bağlanması
 - Ekran okuyucu testleri ve Lighthouse denetimi
 - QR kod düzenleme (Edit) akışı
 - İndirme sayacının gerçek indirme aksiyonuna bağlanması
 - My QR Codes sayfasına filtreleme
 - Supabase Storage bucket kurulumu (logolar için)
 - Renk seçimine gradient desteği eklenmesi
+- Gelecek özellikler: Dynamic QR, Analytics, AI QR Generator (bkz. `ROADMAP.md`)
+
+---
+
+## [1.0.0] - 2026-07-08
+
+### Added
+
+- Proje Vercel'e production olarak deploy edildi: https://qr-studio-mak0822.vercel.app
+- Production ortam değişkenleri (Supabase URL, publishable key, secret key) yapılandırıldı
+- Uçtan uca production testi tamamlandı: kayıt, giriş, QR oluşturma, kaydetme, dashboard görüntüleme
+
+### Milestone
+
+Bu sürümle birlikte Definition of Done'daki temel maddelerin tamamı karşılanmıştır: authentication, QR üretimi, canlı önizleme, QR özelleştirme, kullanıcı dashboard'u, veritabanı entegrasyonu, logo yükleme, mobil responsive tasarım ve deployment. Proje artık kullanılabilir, canlı bir SaaS uygulamasıdır.
 
 ---
 
