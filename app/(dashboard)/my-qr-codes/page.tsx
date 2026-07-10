@@ -1,9 +1,6 @@
 import Link from 'next/link';
 import { getQrCodes } from '@/lib/qr/queries';
-import { qrTypeLabels } from '@/features/qr-editor/components/QrTypeForm';
-import { DeleteQrButton } from '@/features/qr-editor/components/DeleteQrButton';
-import { FavoriteButton } from '@/features/qr-editor/components/FavoriteButton';
-import type { QrType } from '@/types/qr';
+import { QrCodesTable } from '@/features/qr-editor/components/QrCodesTable';
 
 export default async function MyQrCodesPage() {
   const { data: qrCodes, error } = await getQrCodes();
@@ -34,40 +31,7 @@ export default async function MyQrCodesPage() {
         </div>
       )}
 
-      {!error && qrCodes.length > 0 && (
-        <div className="border border-border rounded-xl overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-muted/30">
-              <tr>
-                <th className="w-10 px-4 py-3"></th>
-                <th className="text-left px-4 py-3 font-medium">İsim</th>
-                <th className="text-left px-4 py-3 font-medium">Tip</th>
-                <th className="text-left px-4 py-3 font-medium">İndirme</th>
-                <th className="text-left px-4 py-3 font-medium">Oluşturulma</th>
-                <th className="text-right px-4 py-3 font-medium">İşlemler</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border">
-              {qrCodes.map((qr) => (
-                <tr key={qr.id}>
-                  <td className="px-4 py-3">
-                    <FavoriteButton id={qr.id} isFavorite={qr.is_favorite} />
-                  </td>
-                  <td className="px-4 py-3">{qr.name}</td>
-                  <td className="px-4 py-3">{qrTypeLabels[qr.type as QrType] ?? qr.type}</td>
-                  <td className="px-4 py-3 text-muted-foreground">{qr.download_count}</td>
-                  <td className="px-4 py-3 text-muted-foreground">
-                    {new Date(qr.created_at).toLocaleDateString('tr-TR')}
-                  </td>
-                  <td className="px-4 py-3 text-right">
-                    <DeleteQrButton id={qr.id} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+      {!error && qrCodes.length > 0 && <QrCodesTable qrCodes={qrCodes} />}
     </div>
   );
 }
