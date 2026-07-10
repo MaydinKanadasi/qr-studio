@@ -35,11 +35,15 @@ const defaultOptions: Options = {
   },
 };
 
-export function useQrCode(initialData: string = 'https://qrstudio.app') {
+export function useQrCode(
+  initialData: string = 'https://qrstudio.app',
+  initialSettings?: Partial<Options>
+) {
   const containerRef = useRef<HTMLDivElement>(null);
   const qrRef = useRef<QRCodeStyling | null>(null);
   const [options, setOptions] = useState<Options>({
     ...defaultOptions,
+    ...initialSettings,
     data: initialData,
   });
 
@@ -80,11 +84,6 @@ export function useQrCode(initialData: string = 'https://qrstudio.app') {
   }
 
   async function download(extension: 'png' | 'svg') {
-    // Export için yüksek çözünürlüklü ayrı bir instance oluştur.
-    // Önizlemedeki 280px boyutu ekranda iyi görünür ama indirilen
-    // dosyada logo/detaylar bulanık çıkar; bu yüzden export'ta
-    // boyutu büyütüyoruz (SVG zaten vektörel olduğu için width/height
-    // sadece viewBox'ı etkiler, kalite kaybı olmaz).
     const exportQr = new QRCodeStyling({
       ...options,
       width: EXPORT_SIZE,

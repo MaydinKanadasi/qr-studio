@@ -73,7 +73,15 @@ export default async function DashboardPage() {
                     {new Date(qr.updated_at).toLocaleDateString('tr-TR')}
                   </td>
                   <td className="px-4 py-3 text-right">
-                    <DeleteQrButton id={qr.id} />
+                    <div className="flex items-center justify-end gap-1">
+                      <Link
+                        href={`/create/${qr.id}`}
+                        className="text-sm px-2 py-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground"
+                      >
+                        Düzenle
+                      </Link>
+                      <DeleteQrButton id={qr.id} />
+                    </div>
                   </td>
                 </tr>
               ))}

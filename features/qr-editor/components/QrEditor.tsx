@@ -1,23 +1,45 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useQrCode } from '../hooks/useQrCode';
 import { Button } from '@/components/ui/button';
 import { encodeQrContent } from '@/lib/qr/encoders';
 import type { QrType } from '@/types/qr';
 import { QrTypeForm, qrTypeLabels, defaultContentByType } from './QrTypeForm';
-import { saveQrCode } from '@/lib/qr/queries';
+import { saveQrCode, updateQrCode } from '@/lib/qr/queries';
+
+interface InitialQr {
+  id: string;
+  name: string;
+  type: QrType;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  content: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  settingsJson: Record<string, any>;
+}
 
 const qrTypes = Object.keys(qrTypeLabels) as QrType[];
 
-export function QrEditor() {
-  const { containerRef, options, updateOption, setLogo, setLogoSize, download } = useQrCode();
-  const [qrType, setQrType] = useState<QrType>('url');
+export function QrEditor({ initialQr }: { initialQr?: InitialQr }) {
+  const router = useRouter();
+  const isEditing = Boolean(initialQr);
+
+  const [qrType, setQrType] = useState<QrType>(initialQr?.type ?? 'url');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [content, setContent] = useState<any>(defaultContentByType.url);
-  const [qrName, setQrName] = useState('Adsız QR Kod');
+  const [content, setContent] = useState<any>(initialQr?.content ?? defaultContentByType.url);
+  const [qrName, setQrName] = useState(initialQr?.name ?? 'Adsız QR Kod');
   const [saving, setSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
+
+  const initialEncoded = initialQr
+    ? encodeQrContent(initialQr.type, initialQr.content) || ' '
+    : 'https://qrstudio.app';
+
+  const { containerRef, options, updateOption, setLogo, setLogoSize, download } = useQrCode(
+    initialEncoded,
+    initialQr?.settingsJson as Partial<Parameters<typeof useQrCode>[1]>
+  );
 
   // Tip değiştiğinde ilgili varsayılan içeriği yükle
   function handleTypeChange(newType: QrType) {
@@ -40,19 +62,28 @@ export function QrEditor() {
     setSaving(true);
     setSaveMessage(null);
 
-    const result = await saveQrCode({
-      name: qrName || 'Adsız QR Kod',
-      type: qrType,
-      content,
-      settingsJson: {
-        dotsOptions: options.dotsOptions,
-        backgroundOptions: options.backgroundOptions,
-        cornersSquareOptions: options.cornersSquareOptions,
-        margin: options.margin,
-        qrOptions: options.qrOptions,
-        imageOptions: options.imageOptions,
-      },
-    });
+    const settingsJson = {
+      dotsOptions: options.dotsOptions,
+      backgroundOptions: options.backgroundOptions,
+      cornersSquareOptions: options.cornersSquareOptions,
+      margin: options.margin,
+      qrOptions: options.qrOptions,
+      imageOptions: options.imageOptions,
+    };
+
+    const result = isEditing
+      ? await updateQrCode(initialQr!.id, {
+          name: qrName || 'Adsız QR Kod',
+          type: qrType,
+          content,
+          settingsJson,
+        })
+      : await saveQrCode({
+          name: qrName || 'Adsız QR Kod',
+          type: qrType,
+          content,
+          settingsJson,
+        });
 
     setSaving(false);
 
@@ -61,7 +92,8 @@ export function QrEditor() {
       return;
     }
 
-    setSaveMessage('QR kod kaydedildi!');
+    setSaveMessage(isEditing ? 'Değişiklikler kaydedildi!' : 'QR kod kaydedildi!');
+    if (isEditing) router.refresh();
   }
 
   return (
@@ -276,7 +308,7 @@ export function QrEditor() {
 
         <div className="flex gap-3">
           <Button onClick={handleSave} disabled={saving} className="flex-1">
-            {saving ? 'Kaydediliyor...' : 'Kaydet'}
+            {saving ? 'Kaydediliyor...' : isEditing ? 'Değişiklikleri Kaydet' : 'Kaydet'}
           </Button>
         </div>
 
