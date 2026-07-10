@@ -21,6 +21,23 @@ Format: `## [Sürüm] - YYYY-MM-DD`
 
 ---
 
+## [1.1.0] - 2026-07-10
+
+### Added
+
+- Proje README.md'si tamamen yeniden yazıldı: özellikler, tech stack, kurulum, proje yapısı, komutlar
+- Mobil ekranlarda dashboard için hamburger menü navigasyonu (`MobileNav`)
+
+### Fixed
+
+- Dashboard sayfalarında mobilde (sm altı ekranlarda) navigasyon eksikliği giderildi — kullanıcılar artık `/create` gibi sayfalardan diğer sayfalara mobilde geçiş yapabiliyor
+
+### Milestone
+
+ROADMAP.md'deki Faz 0'dan Faz 10'a kadar tüm fazlar tamamlanmıştır. PROJECT_REQUIREMENTS.md'deki Definition of Done listesindeki tüm maddeler karşılanmıştır.
+
+---
+
 ## [1.0.0] - 2026-07-08
 
 ### Added

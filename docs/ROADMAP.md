@@ -81,10 +81,10 @@ Bu doküman, projenin git/github üzerinden adım adım nasıl ilerleyeceğini t
 
 ## Faz 10 — Dokümantasyon ve Teslim
 
-- [ ] Tüm `docs/` dosyalarının güncellenmesi
-- [ ] README.md tamamlanması
-- [ ] CHANGELOG.md güncel tutulması
-- [ ] Definition of Done kontrolü (bkz. `PROJECT_REQUIREMENTS.md`)
+- [x] Tüm `docs/` dosyalarının güncellenmesi
+- [x] README.md tamamlanması
+- [x] CHANGELOG.md güncel tutulması
+- [x] Definition of Done kontrolü (bkz. `PROJECT_REQUIREMENTS.md`)
 
 ---
 

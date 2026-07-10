@@ -129,16 +129,16 @@ Desteklenen özellikler: canlı önizleme, logo gömme, gradient, yuvarlatılmı
 
 Proje aşağıdakiler tamamlandığında "bitti" sayılır:
 
-- [ ] Authentication çalışıyor
-- [ ] QR üretimi çalışıyor
-- [ ] Live preview çalışıyor
-- [ ] QR özelleştirme çalışıyor
-- [ ] Kullanıcı dashboard'u çalışıyor
-- [ ] Veritabanı QR kodlarını saklıyor
-- [ ] Logo yükleme çalışıyor
-- [ ] Deployment tamamlandı
-- [ ] Mobile responsive
-- [ ] Dokümantasyon tamamlandı
+- [x] Authentication çalışıyor
+- [x] QR üretimi çalışıyor
+- [x] Live preview çalışıyor
+- [x] QR özelleştirme çalışıyor
+- [x] Kullanıcı dashboard'u çalışıyor
+- [x] Veritabanı QR kodlarını saklıyor
+- [x] Logo yükleme çalışıyor
+- [x] Deployment tamamlandı
+- [x] Mobile responsive
+- [x] Dokümantasyon tamamlandı
 
 ## 13. Gelecek Özellikler (Out of Scope — v1)
 
